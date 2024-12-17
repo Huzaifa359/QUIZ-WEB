@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   <style>
+        body{
+            text-align: center;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            background-image: url(copy\ bagorund.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+           height: 100vh;
+        }
+        .input{
+            width: 170px;
+            height: 30px;
+            border-radius:30px;
+            margin: 10px;
+        }
+        .input2{
+            width: 200px;
+            height: 30px;
+            border-radius:30px;
+        }
+        .sbt{
+            border-radius: 20px;
+            width: 90px;
+            height: 30px;
+            margin: 5px;
+        }
+        .main{
+            
+            height: 300px;
+            width: 250px;
+            margin: auto;
+            border: 1px solid white;
+            border-radius: 30px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+    <input type="text"   class="input" id="loginname"  placeholder="name" >
+    <input type="text"  class="input" id="loginpassword" name="" placeholder="password" >
+    <input  class="sbt" type="button" name="enter"  value="submit" onclick="loginbutton()">
+    <a href="index.html"><button class="sbt">sign up</button></a>
+    </div>
+    <script >
+        function loginbutton(){
+        var  d ={
+           loginname: document.getElementById('loginname').value ,
+       loginpassword: document.getElementById('loginpassword').value,
+    }
+    
+    
+
+   let logininfo=JSON.stringify(d)
+   var lclgetitem=localStorage.getItem('personinfo')
+   var parsedlclgetitem=JSON.parse(lclgetitem)
+   if( d.loginname == "" && d.loginpassword ==  ""){
+        Swal.fire({
+  title: "oops",
+  text: "please fill all info!",
+  icon: "error"
+});
+    }
+    else{
+   if(parsedlclgetitem.personname === d.loginname &&  parsedlclgetitem.password === d.loginpassword  ){
+    Swal.fire({
+  title: "succesfully login!",
+  text: " tap to start quiz",
+  icon: "success"
+});
+window.location.href= "selection.html"
+   }
+   else{
+    Swal.fire({
+  title: "enter valid info",
+  text: "please sign up first!",
+  icon: "error"
+});
+   }
+}
+        }
+    </script>
+
+</body>
+</html>
